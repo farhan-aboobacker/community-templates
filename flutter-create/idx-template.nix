@@ -1,8 +1,12 @@
 {pkgs, sample ? "none", template ? "app", blank ? false, platforms ? "web,android", ...}: {
 channel = "stable-25.05";
     packages = [
+        pkgs.curl
+        pkgs.gnutar
         pkgs.xz
+        pkgs.git
         pkgs.busybox
+        pkgs.jdk21
         pkgs.flutterPackages-source.v3_29
     ];
     bootstrap = ''
