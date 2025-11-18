@@ -15,6 +15,7 @@
  */
 
 { pkgs, module ? "example.com", ... }: {
+  channel = "stable-25.05"
   packages = [
     pkgs.go
     pkgs.python313
