@@ -17,7 +17,7 @@
 { pkgs, template ? "js", ts ? false, ... }: {
   channel = "stable-25.05";
   packages = [
-    pkgs.nodejs
+    pkgs.nodejs_24
     pkgs.python313
     pkgs.python313Packages.pip
     pkgs.python313Packages.fastapi
