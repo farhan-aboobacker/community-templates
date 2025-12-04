@@ -45,7 +45,7 @@
     cp -rf ${./dev.nix} "$out/.idx/dev.nix"
     shopt -s dotglob; cp -r ${./dev}/* "$out"
     npm install nativescript@8
-    ./node_modules/nativescript/bin/ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
+    ./node_modules/nativescript/bin/ns create example --${template} ${if ts then "--ts" else ""} --path "$out" --force
     mv "$out/example"/* "$out/"
     rmdir "$out/example"
     chmod -R +w "$out"
