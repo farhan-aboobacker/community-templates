@@ -31,7 +31,7 @@
  */
 
 { pkgs, template ? "js", ts ? false, ... }: {
-  channel = "stable-25.05"
+  channel = "stable-25.05";
   packages = [
     pkgs.nodejs
     pkgs.python3
