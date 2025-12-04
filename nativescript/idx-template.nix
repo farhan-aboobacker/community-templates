@@ -40,15 +40,19 @@
     pkgs.python311Packages.uvicorn
   ];
   bootstrap = ''    
-    mkdir "$out"
-    mkdir -p "$out/.idx/"
-    cp -rf ${./dev.nix} "$out/.idx/dev.nix"
-    shopt -s dotglob; cp -r ${./dev}/* "$out"
-    npm install nativescript@8 create example --${template} ${if ts then "--ts" else ""} --path "$out"
-    mv "$out/example"/* "$out/"
-    rmdir "$out/example"
-    chmod -R +w "$out"
-    cd "$out"; npm install -D nativescript@8
+     mkdir -p "$WS_NAME"
+    npx nativescript create "$WS_NAME" --template angular
+     mkdir -p "$WS_NAME/.idx/"
+    cp -rf ${./dev.nix} "$WS_NAME/.idx/dev.nix"
+    chmod -R +w "$WS_NAME"
+    mv "$WS_NAME" "$out"
+
+    mkdir -p "$out/.idx"
+    chmod -R u+w "$out"
+    cp -rf ${./.idx/airules.md} "$out/.idx/airules.md"
+    cp -rf "$out/.idx/airules.md" "$out/GEMINI.md"
+    chmod -R u+w "$out"
+     cd "$out"; npm install -D nativescript@8
     cd "$out"; npm install --package-lock-only --ignore-scripts
   '';
 
