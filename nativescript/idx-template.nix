@@ -41,14 +41,14 @@
   ];
   bootstrap = ''    
      mkdir -p "$WS_NAME"
-    npx nativescript create "$WS_NAME" --template angular
+    npx nativescript create "$WS_NAME" --template "$template"
      mkdir -p "$WS_NAME/.idx/"
     cp -rf ${./dev.nix} "$WS_NAME/.idx/dev.nix"
     chmod -R +w "$WS_NAME"
     mv "$WS_NAME" "$out"
 
     chmod -R u+w "$out"
-     cd "$out"; npm install -D nativescript@8
+     cd "$out"; npm install -D nativescript
     cd "$out"; npm install --package-lock-only --ignore-scripts
   '';
 
