@@ -64,7 +64,7 @@
     rmdir "$out/example"
     chmod -R +w "$out"
     cd "$out"; npm install -D nativescript@8
-    cd "$out"; npm install --package-lock-only --ignore-scripts
+    cd "$out"; npm install --package-lock-only --ignore-scripts --legacy-peer-deps
   '';
   */
 }
