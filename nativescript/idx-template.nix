@@ -30,7 +30,6 @@
     npm install nativescript
     ./node_modules/nativescript/bin/ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
     chmod -R +w "$out"
-    cd "$out"; npm install -D nativescript
     cd "$out"; npm install --package-lock-only --ignore-scripts
   '';
 }
