@@ -41,14 +41,14 @@
   ];
   bootstrap = ''    
      mkdir -p "$WS_NAME"
-    npx nativescript@8.8.0 create "$WS_NAME" --${template}
+    npx nativescript@8.7.1 create "$WS_NAME" --${template}
      mkdir -p "$WS_NAME/.idx/"
     cp -rf ${./dev.nix} "$WS_NAME/.idx/dev.nix"
     chmod -R +w "$WS_NAME"
     mv "$WS_NAME" "$out"
 
     chmod -R u+w "$out"
-    cd "$out"; npm install -D nativescript@8.8.0
+    cd "$out"; npm install -D nativescript@8.7.1
     cd "$out"; npm install --package-lock-only --ignore-scripts --legacy-peer-deps
   '';
 
