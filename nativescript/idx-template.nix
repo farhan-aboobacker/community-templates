@@ -39,6 +39,27 @@
     pkgs.python311Packages.fastapi
     pkgs.python311Packages.uvicorn
   ];
+bootstrap = ''    
+    mkdir "$out"
+    mkdir -p "$out/.idx/"
+    cp -rf ${./dev.nix} "$out/.idx/dev.nix"
+    shopt -s dotglob; cp -r ${./dev}/* "$out"
+
+    if [ "${template}" = "svelte" ]; then
+       npm config set legacy-peer-deps true
+       npm install --save-dev nativescript
+       npx ns create example --template @nativescript/template-blank-svelte --path "$out"
+    else
+       npm install nativescript
+       ./node_modules/nativescript/bin/ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
+    fi
+    mv "$out/example"/* "$out/"
+    rmdir "$out/example"
+    chmod -R +w "$out"
+    cd "$out"; npm install -D nativescript
+    cd "$out"; npm install --package-lock-only --ignore-scripts
+    
+/*
   bootstrap = ''    
      mkdir -p "$WS_NAME"
     npx nativescript@8.5.2 create "$WS_NAME" --${template}
@@ -51,7 +72,7 @@
     cd "$out"; npm install -D nativescript@8.5.2
     cd "$out"; npm install --package-lock-only --ignore-scripts --legacy-peer-deps
   '';
-
+*/
   /*
    bootstrap = ''    
     mkdir "$out"
