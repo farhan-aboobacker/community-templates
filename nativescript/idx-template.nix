@@ -42,9 +42,9 @@ bootstrap = ''
     shopt -s dotglob; cp -r ${./dev}/* "$out"
     if [ "${template}" = "svelte" ]; then
        npm config set legacy-peer-deps true
-       npx --yes create example --svelte --path "$out"
+       npx --yes nativescript create example --svelte --path "$out"
     else
-       npx create example --${template} ${if ts then "--ts" else ""} --path "$out"
+       npx ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
     fi
     mv "$out/example"/* "$out/"
     rmdir "$out/example"
