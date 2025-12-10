@@ -58,34 +58,6 @@ bootstrap = ''
     chmod -R +w "$out"
     cd "$out"; npm install -D nativescript
     cd "$out"; npm install --package-lock-only --ignore-scripts
-    
-/*
-  bootstrap = ''    
-     mkdir -p "$WS_NAME"
-    npx nativescript@8.5.2 create "$WS_NAME" --${template}
-     mkdir -p "$WS_NAME/.idx/"
-    cp -rf ${./dev.nix} "$WS_NAME/.idx/dev.nix"
-    chmod -R +w "$WS_NAME"
-    mv "$WS_NAME" "$out"
+    ''; 
 
-    chmod -R u+w "$out"
-    cd "$out"; npm install -D nativescript@8.5.2
-    cd "$out"; npm install --package-lock-only --ignore-scripts --legacy-peer-deps
-  '';
-*/
-  /*
-   bootstrap = ''    
-    mkdir "$out"
-    mkdir -p "$out/.idx/"
-    cp -rf ${./dev.nix} "$out/.idx/dev.nix"
-    shopt -s dotglob; cp -r ${./dev}/* "$out"
-    npm install nativescript@8
-    ./node_modules/nativescript/bin/ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
-    mv "$out/example"/* "$out/"
-    rmdir "$out/example"
-    chmod -R +w "$out"
-    cd "$out"; npm install -D nativescript@8
-    cd "$out"; npm install --package-lock-only --ignore-scripts --legacy-peer-deps
-  '';
-  */
 }
