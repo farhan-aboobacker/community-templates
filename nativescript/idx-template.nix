@@ -27,7 +27,7 @@
     if [ "${template}" = "svelte" ]; then
        npm config set legacy-peer-deps true
        npm install --save-dev nativescript
-       npx ns create example --template @nativescript/template-blank-svelte --path "$out"
+       npx ns create example --svelte --path "$out"
     else
        npm install nativescript
        ./node_modules/nativescript/bin/ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
