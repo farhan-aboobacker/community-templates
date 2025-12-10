@@ -42,14 +42,14 @@ bootstrap = ''
     shopt -s dotglob; cp -r ${./dev}/* "$out"
     if [ "${template}" = "svelte" ]; then
        npm config set legacy-peer-deps true
-       npx --yes nativescript create example --svelte --path "$out"
+       npm install --save-dev nativescript
+       npx ns nativescript create example --svelte --path "$out"
     else
        npx ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
     fi
     mv "$out/example"/* "$out/"
     rmdir "$out/example"
     chmod -R +w "$out"
-    cd "$out"; npm install -D nativescript
     cd "$out"; npm install --package-lock-only --ignore-scripts
     ''; 
 
