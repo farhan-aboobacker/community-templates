@@ -15,6 +15,7 @@
  */
 
 { pkgs, template ? "js", ts ? false, ... }: {
+  channel = "stable-24.05";
   packages = [
     pkgs.nodejs
   ];
