@@ -34,10 +34,6 @@
   channel = "stable-24.05";
   packages = [
     pkgs.nodejs
-    pkgs.python3
-    pkgs.python311Packages.pip
-    pkgs.python311Packages.fastapi
-    pkgs.python311Packages.uvicorn
   ];
 bootstrap = ''    
     mkdir "$out"
@@ -47,8 +43,8 @@ bootstrap = ''
 
     if [ "${template}" = "svelte" ]; then
        npm config set legacy-peer-deps true
-       npm install --save-dev nativescript
-       npx ns create example --template @nativescript/template-blank-svelte --path "$out"
+       npm install -g nativescript
+       ./node_modules/nativescript/bin/n create example --svelte --path "$out"
     else
        npm install nativescript
        ./node_modules/nativescript/bin/ns create example --${template} ${if ts then "--ts" else ""} --path "$out"
@@ -56,7 +52,6 @@ bootstrap = ''
     mv "$out/example"/* "$out/"
     rmdir "$out/example"
     chmod -R +w "$out"
-    cd "$out"; npm install -D nativescript
     cd "$out"; npm install --package-lock-only --ignore-scripts
     ''; 
 
